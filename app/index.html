@@ -35,10 +35,9 @@
             </ul>
         </section>
     </div>
-    <div class="wrapper">
-      <div ng-view="" class="global-view"></div>
-      <canvas id="canvas" canvas-rain></canvas>
-    </div>
+    
+    <div ng-view="" class="global-view"></div>
+    <canvas id="canvas" canvas-rain></canvas>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -68,6 +67,8 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/waypoints/lib/noframework.waypoints.min.js"></script>
+    <script src="bower_components/angular-scroll/angular-scroll.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -82,6 +83,7 @@
         <script src="scripts/controllers/hotel.js"></script>
         <script src="scripts/services/canvas-service.js"></script>
         <script src="scripts/directives/canvas-rain.js"></script>
+        <script src="scripts/directives/unit-name.js"></script>
         <!-- endbuild -->
 </body>
 </html>
