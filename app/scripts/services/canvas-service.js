@@ -103,8 +103,8 @@ angular.module('bahnhofApp').factory('canvasService', function ($window, $http) 
 
           fallingDr.image = new Image();
           fallingDr.image.src = 'images/icons/drop.png';
-          fallingDr.image.height = 11;
-          fallingDr.image.width = 5;
+          fallingDr.image.height = 5;
+          fallingDr.image.width = 10;
 
           fallingDr.x = Math.random() * canvas.width;
           fallingDr.y = Math.random() * 5;
