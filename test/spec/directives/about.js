@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: unitName', function () {
+describe('Directive: about', function () {
 
   // load the directive's module
   beforeEach(module('bahnhofApp'));
@@ -13,8 +13,8 @@ describe('Directive: unitName', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<unit-name></unit-name>');
+    element = angular.element('<about></about>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the unitName directive');
+    expect(element.text()).toBe('this is the about directive');
   }));
 });

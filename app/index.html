@@ -8,6 +8,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/normalize.css/normalize.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -22,7 +23,7 @@
     <!-- Add your site or application content here -->
     <div nav-stuff>
         <nav>
-            <div class="logo">BHTHLFNG</div>
+            <div class="logo">B</div>
             <div class="burger" ng-click="nav.toggle()"></div>
         </nav>
         <section class="open-nav">
@@ -36,8 +37,7 @@
         </section>
     </div>
     
-    <div ui-view="" class="global-view"></div>
-    <canvas id="canvas"></canvas>
+    <div ui-view="" class="view-wrapper"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -81,9 +81,9 @@
         <script src="scripts/controllers/restaurant.js"></script>
         <script src="scripts/controllers/kultur.js"></script>
         <script src="scripts/controllers/hotel.js"></script>
-        <script src="scripts/services/canvas-service.js"></script>
-        <script src="scripts/directives/canvas-rain.js"></script>
-        <script src="scripts/directives/unit-name.js"></script>
+        <script src="scripts/directives/hero.js"></script>
+        <script src="scripts/directives/hotel.js"></script>
+        <script src="scripts/directives/about.js"></script>
         <!-- endbuild -->
 </body>
 </html>

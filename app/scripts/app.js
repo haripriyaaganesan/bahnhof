@@ -19,11 +19,13 @@ angular
     'duScroll'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
+
+    console.log("%c2015\nBahnhof Thalfang", "color: #000000; font-size: 14px; font-weight: bold;");
     
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-    .state('home', {
+    .state('main', {
       url: '/',
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
