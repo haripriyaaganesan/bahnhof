@@ -1,0 +1,44 @@
+html, body{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+body{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+
+* {
+  @include box-sizing(border-box);
+  outline:none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+section, div{
+  display: block;
+}
+
+
+// -------------------------------------------------
+//
+// Cursors
+// 
+// -------------------------------------------------
+a{
+	cursor: pointer !important;
+}
+
+[ng-click]{
+    cursor: pointer;
+}
+
+[ui-sref]{
+  cursor: pointer !important;
+}

@@ -27,17 +27,17 @@
         </nav>
         <section class="open-nav">
             <ul>
-                <li><a href="#/home">Home</a></li>
-                <li><a href="#/restaurant">Restaurant</a></li>
-                <li><a href="#/hotel">Hotel</a></li>
-                <li><a href="#/kultur">Kultur</a></li>
-                <li><a href="#/about">About</a></li>
+                <li><a ui-sref="home">Home</a></li>
+                <li><a ui-sref="restaurant">Restaurant</a></li>
+                <li><a ui-sref="hotel">Hotel</a></li>
+                <li><a ui-sref="kultur">Kultur</a></li>
+                <li><a ui-sref="about">About</a></li>
             </ul>
         </section>
     </div>
     
-    <div ng-view="" class="global-view"></div>
-    <canvas id="canvas" canvas-rain></canvas>
+    <div ui-view="" class="global-view"></div>
+    <canvas id="canvas"></canvas>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -66,9 +66,9 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/waypoints/lib/noframework.waypoints.min.js"></script>
     <script src="bower_components/angular-scroll/angular-scroll.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

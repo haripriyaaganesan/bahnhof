@@ -3,16 +3,23 @@
 @import "bourbon/app/assets/stylesheets/_bourbon.scss";
 // endbower
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
+// -------------------------------------------------
+//
+// Base
+// 
+// -------------------------------------------------
+@import "base/vars";
+@import "base/mixins";
+@import "base/typo";
+@import "base/z";
 
-@import "_fonts.scss";
-@import "_colors.scss";
-@import "_globals.scss";
-@import "_home.scss";
-@import "_nav.scss";
 
+
+
+// -------------------------------------------------
+//
+// Modules
+// 
+// -------------------------------------------------
+@import "modules/home";
+@import "modules/nav";

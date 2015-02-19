@@ -12,35 +12,35 @@ angular
   .module('bahnhofApp', [
     'ngAnimate',
     'ngCookies',
+    'ui.router',
     'ngResource',
-    'ngRoute',
     'ngSanitize',
     'ngTouch',
     'duScroll'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .when('/restaurant', {
-        templateUrl: 'views/restaurant.html',
-        controller: 'RestaurantCtrl'
-      })
-      .when('/kultur', {
-        templateUrl: 'views/kultur.html',
-        controller: 'KulturCtrl'
-      })
-      .when('/hotel', {
-        templateUrl: 'views/hotel.html',
-        controller: 'HotelCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+  .config(function ($stateProvider, $urlRouterProvider) {
+    
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+    .state('home', {
+      url: '/',
+      templateUrl: 'views/main.html',
+      controller: 'MainCtrl'
+    })
+    .state('restaurant', {
+      url: '/restaurant',
+      templateUrl: 'views/restaurant.html',
+      controller: 'RestaurantCtrl'
+    })
+    .state('hotel', {
+      url: '/hotel',
+      templateUrl: 'views/hotel.html',
+      controller: 'HotelCtrl'
+    })
+    .state('kultur', {
+      url: '/kultur',
+      templateUrl: 'views/kultur.html',
+      controller: 'KulturCtrl'
+    });
   });
