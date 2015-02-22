@@ -15,6 +15,7 @@ angular.module('bahnhofApp').directive('about', function () {
 	return {
 		templateUrl: 'views/_about.html',
 		restrict: 'A',
-		link: link
+		link: link,
+		replace: true
 	};
 });

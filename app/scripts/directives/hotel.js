@@ -17,6 +17,7 @@ angular.module('bahnhofApp').directive('hotel', function () {
 	return {
 		templateUrl: 'views/_hotel.html',
 		restrict: 'A',
+		replace: true,
 		link: link
 	};
 });

@@ -1,10 +1,52 @@
 .hotel{
 	position: relative;
 	width: 100%;
-	height: 100%;
-	background: $lightgreen;
 	margin: 0;
 	top: 0;
 	left: 0;
-	min-height: 100%;
+	height: auto;
+	.hotel-container{
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		@include display(flex);
+		@include flex-direction(row);
+		@include align-items(center);
+		@include justify-content(center);
+		.left-col{
+			position: absolute;
+			padding-top: 50px;
+			left: 0;
+			top: 0;
+			width: 50%;
+			height: auto;
+			.spacer{
+				height: 0;
+			}
+			p{
+				max-width: 80%;
+				width: 80%;
+				margin: 25px 10%;
+				text-align: left;
+			}
+		}
+		.right-col{
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 50%;
+			height: auto;
+			background: $gray;
+			padding-top: 50px;
+			img{
+				max-width: 80%;
+				margin: 50px 10%;
+				height: auto;
+				width: 80%;
+
+			}
+		}
+	}
 }
