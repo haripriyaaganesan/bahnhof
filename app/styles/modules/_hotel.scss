@@ -4,7 +4,7 @@
 	margin: 0;
 	top: 0;
 	left: 0;
-	height: auto;
+	height: 100%;
 	.hotel-container{
 		position: relative;
 		top: 0;
@@ -17,16 +17,20 @@
 		@include justify-content(center);
 		.left-col{
 			position: absolute;
-			padding-top: 50px;
+			// padding-top: 50px;
 			left: 0;
 			top: 0;
 			width: 50%;
 			height: auto;
+			background: yellow;
 			.spacer{
 				height: 0;
+				display: block;
+				position: relative;
 			}
 			p{
 				max-width: 80%;
+				position: relative;
 				width: 80%;
 				margin: 25px 10%;
 				text-align: left;

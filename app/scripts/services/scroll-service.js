@@ -19,9 +19,6 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
     self.init(element);
   };
 
-
-
-
   Piece.prototype = {
 
 
@@ -71,9 +68,12 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
         self.reset(element);
       });
 
-      scrollFrame.bind('scroll', function(ev){
+
+      scrollFrame.on('scroll', function(){
         self.onScroll();
       });
+
+      
 
 
       
@@ -108,6 +108,9 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       self.height = element.outerHeight(true);
 
 
+      
+
+
       // ------------------------------------------------
       // Reset to 0
       //
@@ -139,7 +142,6 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       
       self.smallerCol = self.mediaHeight > self.textHeight ? self.textHeight : self.mediaHeight;
 
-      console.log(self.smallerCol);
 
       // ------------------------------------------------
       // Calc and make columns same length
@@ -148,16 +150,17 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       if (self.mediaHeight > self.textHeight){
         self.heightDifference = self.mediaHeight - self.textHeight;
 
-        self.text.css({
-          height: self.mediaHeight
-        });
+        // self.text.css({
+        //   height: self.mediaHeight
+        // });
       }
 
       else{
         self.heightDifference = self.textHeight - self.mediaHeight;
-        self.media.css({
-          height: self.textHeight
-        });
+        
+        // self.media.css({
+        //   height: self.textHeight
+        // });
       }
     },
 
@@ -167,132 +170,129 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
 
       var percent, progress, space, total;
 
+      
+
       self.scrollTop = scrollFrame.scrollTop();
 
-      progress = (self.offsetTop - self.scrollTop) * -1;
-      total = self.smallerCol > self.windowHeight ? self.height - self.windowHeight : self.height - self.smallerCol;
 
-      console.log(self.windowHeight);
+      // ------------------------------------------------
+      // Current Amount of Pixels scrolled from START of section
+      //
+      
+      progress = (self.offsetTop - self.scrollTop) * -1;
+
+
+
+      //****POTENTIAL PROBLEM ***//
+
+      // total = self.smallerCol > self.windowHeight ? self.height - self.windowHeight : self.height - self.smallerCol;
+      
+
+
+
+
+
+      //temporarily make media height always larger
+
+      percent = progress / self.mediaHeight;
+
+      if (percent < 0 && self.smallerCol < self.windowHeight){
+        percent = 0;
+      }
+
+      if (percent > 1 && self.smallerCol < self.windowHeight){
+        percent = 1;
+      }
+
+      space = self.heightDifference * percent;
+
+
+      // ------------------------------------------------
+      // If we haven't yet scrolled to the target section
+      //
+      
+      if (self.scrollTop < self.offsetTop){
+        self.mediaSpacer.css({
+          height: 0
+        });
+
+        return self.textSpacer.css({
+          height: 0
+        });
+      }
+
+
+      // else if (self.smallerCol > self.windowHeight && self.scrollTop >= self.offsetTop && (self.scrollTop + self.windowHeight) >= (self.offsetTop + self.height)){
+        
+
+      //   // ------------------------------------------------
+      //   // Image column is bigger, add space ot text
+      //   //
+        
+
+      //   if (self.mediaHeight > self.textHeight){
+      //     self.mediaSpacer.css({
+      //       height: 0
+      //     });
+
+      //     return self.textSpacer.css({
+      //       height: space
+      //     });
+      //   }
+
+      //   else{
+      //     self.mediaSpacer.css({
+      //       height: self.heightDifference
+      //     });
+
+      //     return self.textSpacer.css({
+      //       height: 0
+      //     });
+      //   }
+
+      // }
+
+
+
+      // -------------------------------------------------
+      //
+      // Completed scroll. Make heights permanent
+      // 
+      // -------------------------------------------------
+      
+      else{
+
+
+        if (self.mediaHeight > self.textHeight){
+          self.mediaSpacer.css({
+            height: 0
+          });
+
+          return self.text.transition({
+            y: space
+          },0);
+          // return self.textSpacer.css({
+          //   height: space
+          // });
+        }
+
+        else{
+          self.mediaSpacer.css({
+            height: space
+          });
+
+          return self.textSpacer.css({
+            height: 0
+          });
+        }
+
+      }
 
     }
 
   };
 
 
-
-
-    // -------------------------------------------------
-    //
-    // Scroll methods
-    // 
-    // -------------------------------------------------
-    
-  //   this.onScroll =  function(){
-  //     var percent, progress, space, total;
-
-  //     this.scrollTop = frame.scrollTop();
-
-  //     progress = (this.offsetTop - this.scrollTop) * -1;
-  //     total = this.smallerCol > this.windowHeight ? this.height - this.windowHeight : this.height - this.smallerCol;
-
-  //     percent = progress / total;
-
-
-  //     if (percent < 0 && this.smallerCol < this.windowHeight){
-  //       percent = 0;
-  //     }
-
-  //     if (percent > 1 && this.smallerCol < this.windowHeight){
-  //       percent = 1;
-  //     }
-
-  //     space = this.heightDifference * percent;
-
-      
-
-
-  //     if (this.scrollTop < this.offsetTop){
-  //       mediaSpacer.css({
-  //         height: 0
-  //       });
-
-  //       return textSpacer.css({
-  //         height: 0
-  //       });
-  //     }
-
-
-  //     else if (this.smallerCol > this.windowHeight && this.scrollTop >= this.offsetTop && (this.scrollTop + this.windowHeight) >= (this.offsetTop + this.height)) {
-
-        
-  //       // ------------------------------------------------
-  //       // Image column is bigger, add space to text
-  //       //
-        
-  //       if (this.mediaHeight > this.textHeight){
-  //         mediaSpacer.css({
-  //           height: 0
-  //         });
-
-  //         return textSpacer.css({
-  //           height: this.heightDifference
-  //         });
-
-  //       }
-
-  //       // ------------------------------------------------
-  //       // Text col is bigger, add space to media
-  //       //
-        
-  //       else{
-  //         mediaSpacer.css({
-  //           height: this.heightDifference
-  //         });
-
-  //         return textSpacer.css({
-  //           height: 0
-  //         });
-  //       }
-  //     }
-
-
-  //     // -------------------------------------------------
-  //     //
-  //     // Completed
-  //     // 
-  //     // -------------------------------------------------
-      
-  //     else{
-  //       if (this.mediaHeight > this.textHeight){
-  //         mediaSpacer.css({
-  //           height: 0
-  //         });
-
-  //         return textSpacer.css({
-  //           height: space
-  //         });
-  //       }
-
-  //       else{
-  //         mediaSpacer.css({
-  //           height: space
-  //         });
-
-  //         return textSpacer.css({
-  //           height: 0
-  //         });
-  //       }
-  //     }
-  //   };
-
-    
-
-  //   return this.init();
-    
-
-  // };
-
-  
 
   // Public API here
   return {
