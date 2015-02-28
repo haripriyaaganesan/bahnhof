@@ -168,18 +168,28 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
     onScroll: function(){
       var self = this;
 
-      var percent, progress, space, total;
+      // var percent, progress, space, total;
+
+      var browserHeight = $(window).height();
+      // console.log(self.textHeight);
+      var diff = (browserHeight - self.mediaHeight) / (browserHeight - self.textHeight);
+      console.log(diff);
+
+
+      self.media.transition({
+        y: scrollFrame.scrollTop() * diff
+      },0);
 
       
 
-      self.scrollTop = scrollFrame.scrollTop();
+      // self.scrollTop = scrollFrame.scrollTop();
 
 
       // ------------------------------------------------
       // Current Amount of Pixels scrolled from START of section
       //
       
-      progress = (self.offsetTop - self.scrollTop) * -1;
+      // progress = (self.offsetTop - self.scrollTop) * -1;
 
 
 
@@ -194,32 +204,32 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
 
       //temporarily make media height always larger
 
-      percent = progress / self.mediaHeight;
+      // percent = progress / self.mediaHeight;
 
-      if (percent < 0 && self.smallerCol < self.windowHeight){
-        percent = 0;
-      }
+      // if (percent < 0 && self.smallerCol < self.windowHeight){
+      //   percent = 0;
+      // }
 
-      if (percent > 1 && self.smallerCol < self.windowHeight){
-        percent = 1;
-      }
+      // if (percent > 1 && self.smallerCol < self.windowHeight){
+      //   percent = 1;
+      // }
 
-      space = self.heightDifference * percent;
+      // space = self.heightDifference * percent;
 
 
       // ------------------------------------------------
       // If we haven't yet scrolled to the target section
       //
       
-      if (self.scrollTop < self.offsetTop){
-        self.mediaSpacer.css({
-          height: 0
-        });
+      // if (self.scrollTop < self.offsetTop){
+      //   self.mediaSpacer.css({
+      //     height: 0
+      //   });
 
-        return self.textSpacer.css({
-          height: 0
-        });
-      }
+      //   return self.textSpacer.css({
+      //     height: 0
+      //   });
+      // }
 
 
       // else if (self.smallerCol > self.windowHeight && self.scrollTop >= self.offsetTop && (self.scrollTop + self.windowHeight) >= (self.offsetTop + self.height)){
@@ -260,33 +270,33 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       // 
       // -------------------------------------------------
       
-      else{
+      // else{
 
 
-        if (self.mediaHeight > self.textHeight){
-          self.mediaSpacer.css({
-            height: 0
-          });
+      //   if (self.mediaHeight > self.textHeight){
+      //     self.mediaSpacer.css({
+      //       height: 0
+      //     });
 
-          return self.text.transition({
-            y: space
-          },0);
-          // return self.textSpacer.css({
-          //   height: space
-          // });
-        }
+      //     return self.text.transition({
+      //       y: space
+      //     },0);
+      //     // return self.textSpacer.css({
+      //     //   height: space
+      //     // });
+      //   }
 
-        else{
-          self.mediaSpacer.css({
-            height: space
-          });
+      //   else{
+      //     self.mediaSpacer.css({
+      //       height: space
+      //     });
 
-          return self.textSpacer.css({
-            height: 0
-          });
-        }
+      //     return self.textSpacer.css({
+      //       height: 0
+      //     });
+      //   }
 
-      }
+      // }
 
     }
 
