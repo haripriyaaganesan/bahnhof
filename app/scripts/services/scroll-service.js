@@ -23,14 +23,15 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
 
 
     offsetTop: 0,
+    lastOffset: 0,
     height: 0,
 
     windowHeight: 0,
-    windowWidth: 0,
 
     mediaHeight: 0,
     textHeight: 0,
     smallerCol: 0,
+    largerCol: 0,
     heightDifference: 0,
 
     media: {},
@@ -54,6 +55,8 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
 
       self.offsetTop = 0;
 
+
+
       // ------------------------------------------------
       // Add binds
       //
@@ -69,9 +72,6 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
 
       
 
-
-      
-
       // ------------------------------------------------
       // Inital reset
       //
@@ -79,6 +79,11 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       $timeout(function(){
         self.reset(element);
       },200);
+
+
+      self.lastOffset = element.offset().top;
+
+
     },
 
 
@@ -92,17 +97,25 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       var self = this;
 
 
-      console.log('resized');
-
 
       self.windowHeight = $(window).height();
-      self.windowWidth = $(window).width();
 
-      self.offsetTop = element.offset().top;
-      self.height = element.outerHeight(true);
+      
+      // -------------------------------------------------
+      //
+      // Make sure offsetTop is relative to document, since we have overflow scrolling on
+      // 
+      // -------------------------------------------------
+      
+      self.scrollTop = scrollFrame.scrollTop();
+      self.offsetTop = element.offset().top + self.scrollTop;
+      
+      
 
 
-    
+
+
+
 
 
       // ------------------------------------------------
@@ -123,6 +136,7 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       //
       
       self.smallerCol = self.mediaHeight > self.textHeight ? self.textHeight : self.mediaHeight;
+      self.largerCol = self.mediaHeight > self.textHeight ? self.mediaHeight : self.textHeight;
 
 
       // ------------------------------------------------
@@ -136,6 +150,12 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
           height: self.mediaHeight
         });
 
+        // ------------------------------------------------
+        // Set overall height of parent element
+        //
+        self.height = self.mediaHeight;
+
+        
         element.css({
           height: self.mediaHeight
         });
@@ -148,10 +168,15 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
           height: self.textHeight
         });
 
+        self.height = self.textHeight;
+
         element.css({
           height: self.textHeight
         });
       }
+
+      self.onScroll();
+
     },
 
 
@@ -169,14 +194,12 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
     // 
     // -------------------------------------------------
     
-    onScroll: function(){
+    onScroll: function(element){
       var self = this;
 
       var percent, progress, space, total;
 
-      
 
-      
 
       self.scrollTop = scrollFrame.scrollTop();
 
@@ -190,18 +213,12 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
 
 
 
-      //****POTENTIAL PROBLEM ***//
+
 
       total = self.smallerCol > self.windowHeight ? self.height - self.windowHeight : self.height - self.smallerCol;
       
 
-
-
-
-
-      //temporarily make media height always larger
-
-      percent = progress / self.mediaHeight;
+      percent = progress / self.largerCol;
 
       if (percent < 0 && self.smallerCol < self.windowHeight){
         percent = 0;
@@ -220,7 +237,6 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       // 
       // -------------------------------------------------
       
-      
       if (self.scrollTop < self.offsetTop){
         
         self.text.transition({
@@ -233,15 +249,13 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
 
       }
 
-
-
-
-
       // -------------------------------------------------
       //
-      // During scroll, on mark
+      // In the zone
       // 
       // -------------------------------------------------
+      
+    
       
       else{
 
@@ -260,7 +274,6 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
             y: space,
             height: self.textHeight - space
           },0);
-
 
         }
 

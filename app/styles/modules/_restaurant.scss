@@ -15,6 +15,22 @@
 		@include flex-direction(row);
 		@include align-items(center);
 		@include justify-content(center);
+		.col{
+			p{
+				max-width: 80%;
+				position: relative;
+				width: 80%;
+				margin: 25px 10%;
+				text-align: left;
+			}
+			img{
+				max-width: 80%;
+				margin: 50px 10%;
+				height: auto;
+				width: 80%;
+			}
+
+		}
 		.left-col{
 			position: absolute;
 			// padding-top: 50px;
@@ -24,13 +40,6 @@
 			height: auto;
 			// min-height: 100%;
 			background: red;
-			p{
-				max-width: 80%;
-				position: relative;
-				width: 80%;
-				margin: 25px 10%;
-				text-align: left;
-			}
 		}
 		.right-col{
 			position: absolute;
@@ -40,12 +49,6 @@
 			height: auto;
 			background: blue;
 			padding-top: 50px;
-			img{
-				max-width: 80%;
-				margin: 50px 10%;
-				height: auto;
-				width: 80%;
-			}
 		}
 	}
 }
