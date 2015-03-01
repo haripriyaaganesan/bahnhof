@@ -9,8 +9,8 @@
 	@include flex-direction(column);
 	@include align-items(center);
 	@include justify-content(center);
-	background: url(../images/echo.jpg) no-repeat center center;
-	background-size: 70%;
+	// background: url(../images/echo.jpg) no-repeat center center;
+	// background-size: 70%;
 	color: black;
 	.hero-image-container{
 		width: 40%;

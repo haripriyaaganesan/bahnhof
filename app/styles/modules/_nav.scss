@@ -12,7 +12,26 @@ nav{
 		text-align: left;
 		top: 0;
 		left: 20px;
-
+		display: inline-block;
+	}
+	.nav-list{
+		ul{
+			display: inline-block;
+			height: 50px;
+			li{
+				display: inline-block;
+				line-height: 50px;
+				margin: 0 20px;
+				font-weight: bold;
+				@include uppercase();
+				a{
+					border-bottom: 5px solid transparent;
+					&:hover{
+						border-bottom: 5px solid $text;
+					}
+				}
+			}
+		}
 	}
 	.burger{
 		height: 22px;
@@ -24,7 +43,7 @@ nav{
 		bottom: 1px;
 		font-size: 1em;
 		padding-left: 22px;
-		display: block;
+		display: inline-block;
 		z-index: 999;
 		
 		&:before, &:after{

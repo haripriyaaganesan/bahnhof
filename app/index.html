@@ -23,8 +23,15 @@
     <!-- Add your site or application content here -->
     <div nav-stuff>
         <nav>
-            <div class="logo">B</div>
-            <div class="burger" ng-click="nav.toggle()"></div>
+            <div class="logo"><a ui-sref="home">B</a></div>
+            <div class="nav-list">
+                <ul>
+                    <li><a ui-sref="hotel">Hotel</a></li>
+                    <li><a ui-sref="restaurant">Restaurant</a></li>
+                    <li><a ui-sref="kultur">Kultur</a></li>
+                </ul>
+            </div>
+            <!-- <div class="burger" ng-click="nav.toggle()"></div> -->
         </nav>
         <section class="open-nav">
             <ul>
