@@ -16,6 +16,9 @@
 		@include align-items(center);
 		@include justify-content(center);
 		.col{
+			.text{
+				margin-top: 50px;
+			}
 			p{
 				max-width: 80%;
 				position: relative;
@@ -38,8 +41,7 @@
 			top: 0;
 			width: 50%;
 			height: auto;
-			// min-height: 100%;
-			background: red;
+			background: $gray;
 		}
 		.right-col{
 			position: absolute;
@@ -47,7 +49,6 @@
 			top: 0;
 			width: 50%;
 			height: auto;
-			background: blue;
 			padding-top: 50px;
 		}
 	}

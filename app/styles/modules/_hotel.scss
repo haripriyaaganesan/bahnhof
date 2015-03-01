@@ -6,6 +6,7 @@
 	left: 0;
 	height: 100%;
 	.hotel-container{
+
 		position: relative;
 		top: 0;
 		left: 0;
@@ -15,15 +16,10 @@
 		@include flex-direction(row);
 		@include align-items(center);
 		@include justify-content(center);
-		.left-col{
-			position: absolute;
-			// padding-top: 50px;
-			left: 0;
-			top: 0;
-			width: 50%;
-			height: auto;
-			// min-height: 100%;
-			background: yellow;
+		.col{
+			.text{
+				margin-top: 50px;
+			}
 			p{
 				max-width: 80%;
 				position: relative;
@@ -31,22 +27,29 @@
 				margin: 25px 10%;
 				text-align: left;
 			}
-		}
-		.right-col{
-			position: absolute;
-			right: 0;
-			top: 0;
-			width: 50%;
-			height: auto;
-			background: $gray;
-			padding-top: 50px;
 			img{
 				max-width: 80%;
 				margin: 50px 10%;
 				height: auto;
 				width: 80%;
-
 			}
+
+		}
+		.left-col{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 50%;
+			height: auto;
+		}
+		.right-col{
+			position: absolute;
+			background: $gray;
+			right: 0;
+			top: 0;
+			width: 50%;
+			height: auto;
+			padding-top: 50px;
 		}
 	}
 }

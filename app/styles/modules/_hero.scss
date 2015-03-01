@@ -9,8 +9,11 @@
 	@include flex-direction(column);
 	@include align-items(center);
 	@include justify-content(center);
+	background: url(../images/echo.jpg) no-repeat center center;
+	background-size: 70%;
+	color: black;
 	.hero-image-container{
-		width: 60%;
+		width: 40%;
 		height: auto;
 		margin-bottom: 20px;
 		img{
@@ -20,5 +23,20 @@
 	}
 	h1{
 		@include uppercase();
+		background: white;
+		padding: 5px;
+		pointer-events: none;
+		@include user-select(none);
+	}
+	ul{
+		display: block;
+		margin-top: 50px;
+		li{
+			display: inline-block;
+			background: white;
+			line-height: 0;
+			padding: 0 10px;
+			margin: 0 20px;
+		}
 	}
 }

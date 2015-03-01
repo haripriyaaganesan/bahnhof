@@ -2,10 +2,14 @@
 	width: 100%;
 	height: auto;
 	position: relative;
-	background: $lightgreen;
+	margin: 0 0 50px 0;
 	.about-text-block{
 		width: 70%;
 		margin: 0 15%;
 		padding: 50px 0;
+		line-height: 1.5;
+		font-weight: normal;
+		border: 2px solid $text;
+		padding: 0 50px;
 	}
 }
