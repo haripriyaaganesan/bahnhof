@@ -25,10 +25,6 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
     offsetTop: 0,
     height: 0,
 
-
-    mediaSpacer: [],
-    textSpacer: [],
-    
     windowHeight: 0,
     windowWidth: 0,
 
@@ -55,8 +51,6 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       
       self.media = self.element.find('.media');
       self.text = self.element.find('.text');
-      self.mediaSpacer = self.element.find('.media-spacer');
-      self.textSpacer = self.element.find('.text-spacer');
 
       self.offsetTop = 0;
 
@@ -91,7 +85,7 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
 
     // -------------------------------------------------
     //
-    // Reset
+    // Reset functions
     // 
     // -------------------------------------------------
     reset: function(element){
@@ -108,20 +102,7 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       self.height = element.outerHeight(true);
 
 
-      
-
-
-      // ------------------------------------------------
-      // Reset to 0
-      //
-      
-      self.mediaSpacer.css({
-        height: 0
-      });
-
-      self.textSpacer.css({
-        height: 0
-      });
+    
 
 
       // ------------------------------------------------
@@ -131,6 +112,7 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       self.mediaHeight = self.media.css({
         height: 'auto'
       }).outerHeight(true);
+
 
       self.textHeight = self.text.css({
         height: 'auto'
@@ -153,6 +135,10 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
         self.text.css({
           height: self.mediaHeight
         });
+
+        element.css({
+          height: self.mediaHeight
+        });
       }
 
       else{
@@ -161,10 +147,28 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
         self.media.css({
           height: self.textHeight
         });
+
+        element.css({
+          height: self.textHeight
+        });
       }
     },
 
 
+
+
+
+
+
+
+
+
+    // -------------------------------------------------
+    //
+    // Scroll functions
+    // 
+    // -------------------------------------------------
+    
     onScroll: function(){
       var self = this;
 
@@ -182,6 +186,7 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       //
       
       progress = Math.floor((self.offsetTop - self.scrollTop) * -1);
+
 
 
 
@@ -209,87 +214,54 @@ angular.module('bahnhofApp').factory('scrollService', function ($timeout) {
       space = self.heightDifference * percent;
 
 
-      // ------------------------------------------------
-      // If we haven't yet scrolled to the target section
+      // -------------------------------------------------
       //
+      // Haven't hit mark yet. Make sure everything is zero'ed out.
+      // 
+      // -------------------------------------------------
+      
       
       if (self.scrollTop < self.offsetTop){
-        self.mediaSpacer.css({
-          height: 0
-        });
+        
+        self.text.transition({
+            y: 0
+          },0);
 
-        return self.textSpacer.css({
-          height: 0
-        });
+        self.media.transition({
+            y: 0
+          },0);
+
       }
 
 
-      else if (self.smallerCol > self.windowHeight && self.scrollTop >= self.offsetTop && (self.scrollTop + self.windowHeight) >= (self.offsetTop + self.height)){
-        
-
-      //   // ------------------------------------------------
-      //   // Image column is bigger, add space ot text
-      //   //
-        
-
-        if (self.mediaHeight > self.textHeight){
-          self.mediaSpacer.css({
-            height: 0
-          });
-
-          return self.textSpacer.css({
-            height: space
-          });
-        }
-
-        else{
-          self.mediaSpacer.css({
-            height: self.heightDifference
-          });
-
-          return self.textSpacer.css({
-            height: 0
-          });
-        }
-
-      }
 
 
 
       // -------------------------------------------------
       //
-      // Completed scroll. Make heights permanent
+      // During scroll, on mark
       // 
       // -------------------------------------------------
       
       else{
 
-
         if (self.mediaHeight > self.textHeight){
-          self.mediaSpacer.css({
-            height: 0
-          });
 
           self.text.transition({
             y: space,
             height: self.mediaHeight - space
           },0);
 
-          console.log(self.mediaHeight - space);
 
-          // return self.textSpacer.css({
-          //   height: space
-          // });
         }
 
         else{
-          self.mediaSpacer.css({
-            height: space
-          });
+          self.media.transition({
+            y: space,
+            height: self.textHeight - space
+          },0);
 
-          return self.textSpacer.css({
-            height: 0
-          });
+
         }
 
       }

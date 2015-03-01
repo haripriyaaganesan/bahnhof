@@ -1,11 +1,11 @@
-.hotel{
+.restaurant{
 	position: relative;
 	width: 100%;
 	margin: 0;
 	top: 0;
 	left: 0;
-	height: 100%;
-	.hotel-container{
+	height: auto;
+	.restaurant-container{
 		position: relative;
 		top: 0;
 		left: 0;
@@ -23,7 +23,7 @@
 			width: 50%;
 			height: auto;
 			// min-height: 100%;
-			background: yellow;
+			background: red;
 			p{
 				max-width: 80%;
 				position: relative;
@@ -38,7 +38,7 @@
 			top: 0;
 			width: 50%;
 			height: auto;
-			background: $gray;
+			background: blue;
 			padding-top: 50px;
 			img{
 				max-width: 80%;

@@ -8,16 +8,10 @@
  */
 angular.module('bahnhofApp').directive('hotel', function () {
 
-	
-	var link = function($scope){
-		console.log('Hotel');
-	};
-
 
 	return {
 		templateUrl: 'views/_hotel.html',
 		restrict: 'A',
-		replace: true,
-		link: link
+		replace: true
 	};
 });
